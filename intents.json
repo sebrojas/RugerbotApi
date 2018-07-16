@@ -1,0 +1,42 @@
+{"intents": [
+        {"tag": "saludo",
+         "patterns": ["Hola", "Como estas", "Hay alguien ahí", "Que tal", "Buenos días"],
+         "responses": ["Hola, Gracias por visitarnos", "Buenos días", "Hola, Como puedo ayudarte?"],
+         "context_set": ""
+        },
+        {"tag": "despedida",
+         "patterns": ["Chau", "Adios", "Hasta luego"],
+         "responses": ["Hasta luego, gracias por visitarnos", "Que tengas un buen dia", "Adios! Regresa pronto"]
+        },
+        {"tag": "gracias",
+         "patterns": ["Gracias","Muchas Gracias"],
+         "responses": ["Feliz de ayudarte!", "De nada!"]
+        },
+        {"tag": "horas",
+         "patterns": ["A que hora abren?", "Que días abren?", "Cuando abren?" ],
+         "responses": ["Abrimos todos los dias de 9am a 6pm", "Nuestro horario es de 9am a 6pm todos los días"]
+        },
+        {"tag": "motos",
+         "patterns": ["Que motos tienen?", "Que clase de motos tienen", "Que tienen?" ],
+         "responses": ["Rentamos motos Yamaha, Piaggio y Vespa", "Tenemos motos Piaggio, Vespa y Yamaha"]
+        },
+        {"tag": "pagos",
+         "patterns": ["Aceptan tarjeta de credito?", "Aceptan Visa?", "Aceptan solo efectivo?","Aceptan Mastercard?" ],
+         "responses": ["Aceptamos VISA, Mastercard y AMEX", "Aceptamos la mayoria de tarjetas de credito"]
+        },
+        {"tag": "abiertohoy",
+         "patterns": ["Abren Hoy", "A que hora abren hoy", "Cual es su horario de hoy"],
+         "responses": ["Abrimos todos los dias de 9am a 6pm", "Nuestro horario es de 9am a 6pm todos los días"]
+        },
+        {"tag": "rentar",
+         "patterns": ["Podemos rentar una moto", "Quiero rentar una moto", "Como funciona","Rentar una moto","Me gustaria rentar una moto" ],
+         "responses": ["Quieres alquilar hoy o mas adelante?"],
+         "context_set": "rentalday"
+        },
+        {"tag": "rentar_hoy",
+         "patterns": ["hoy"],
+         "responses": ["Para rentar una moto hoy por favor llame a 1-800-1234567"],
+         "context_filter": "rentalday"
+        }
+   ]
+}
