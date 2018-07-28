@@ -15,7 +15,7 @@ def train_chatbot_model(chatbot_id):
 	for document in db.Intents.find({"ChatbotAgentId": chatbot_id}):
 		print(document['Patterns'])
 
-	intents = db.Intents.find({})
+	intents = db.Intents.find({"ChatbotAgentId": chatbot_id})
 	words = []
 	classes = []
 	documents = []
@@ -33,7 +33,7 @@ def train_chatbot_model(chatbot_id):
 	        if str(intent['_id']) not in classes:
 	            classes.append(str(intent['_id']))
 
-	words = [stemmer.stem(w.lower()) for w in words if w not in ignore_words]
+	words = [stemmer.stem(w.lower()) for w in words if w not in ignore_words and w[0] != "@"]
 	words = sorted(list(set(words)))
 
 	classes = sorted(list(set(classes)))
