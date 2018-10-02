@@ -7,7 +7,6 @@ import tensorflow as tf
 import random
 import codecs
 import json
-import extract_info 
 import chatbot_trainer as ct
 from nltk.stem.snowball import SnowballStemmer
 
