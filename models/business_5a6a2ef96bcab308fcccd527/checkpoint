@@ -1,2 +1,2 @@
-model_checkpoint_path: "C:\\Users\\RugerTek MicroFridge\\Documents\\GitHub\\RugerbotApi\\models\\business_5a6a2ef96bcab308fcccd527\\entities.model"
-all_model_checkpoint_paths: "C:\\Users\\RugerTek MicroFridge\\Documents\\GitHub\\RugerbotApi\\models\\business_5a6a2ef96bcab308fcccd527\\entities.model"
+model_checkpoint_path: "C:\\Users\\Rugertek\\Desktop\\python-docs-hello-world\\app\\models\\business_5a6a2ef96bcab308fcccd527\\entities.model"
+all_model_checkpoint_paths: "C:\\Users\\Rugertek\\Desktop\\python-docs-hello-world\\app\\models\\business_5a6a2ef96bcab308fcccd527\\entities.model"

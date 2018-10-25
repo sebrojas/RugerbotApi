@@ -1,20 +1,17 @@
-import mongo_connection as conn
 import nltk
 import numpy as np
 import tflearn
 import tensorflow as tf
 import random
 from nltk.stem.snowball import SnowballStemmer
+from main import mongo
 from bson.objectid import ObjectId
 
 stemmer = SnowballStemmer("spanish")
-cn = conn.context()
-db = cn.client.DevelopmentChatbot
+#cn = conn.context()
+db = mongo.DevelopmentChatbot
 
 def train_entities_model(business_id):
-	for document in db.Entities.find({"BusinessId": business_id}):
-		print(document['Fields'])
-
 	entities = db.Entities.find({"BusinessId": business_id})
 	words = []
 	classes = []
@@ -23,17 +20,16 @@ def train_entities_model(business_id):
 
 	for entity in entities:
 	    for field in entity['Fields']:
+	        
 	        if field["FieldName"] == "Nombre":
 	        	fi = field['FieldData']
-
-	        	print ("field %s" % fi)
 
 	        	w = nltk.word_tokenize(fi['StringValue'])
 
 	        	words.extend(w)
 
 	        	documents.append((w, str(entity['_id'])))
-
+	        
 	        	if str(entity['_id']) not in classes:
 	           		classes.append(str(entity['_id']))
 
@@ -50,15 +46,15 @@ def train_entities_model(business_id):
 	for doc in documents:
 	    
 	    bag = []
-
+	    
 	    pattern_words = doc[0]
-
+	    
 	    pattern_words = [stemmer.stem(word.lower()) for word in pattern_words]
-
+	    
 	    for w in words:
 	        bag.append(1) if w in pattern_words else bag.append(0)
 
-
+	    
 	    output_row = list(output_empty)
 	    output_row[classes.index(doc[1])] = 1
 

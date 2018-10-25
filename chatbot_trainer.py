@@ -1,17 +1,20 @@
-import mongo_connection as conn
 import nltk
 import numpy as np
 import tflearn
 import tensorflow as tf
 import random
 from nltk.stem.snowball import SnowballStemmer
+from main import mongo
 from bson.objectid import ObjectId
 
 stemmer = SnowballStemmer("spanish")
-cn = conn.context()
-db = cn.client.DevelopmentChatbot
+#cn = conn.context()
+db = mongo.DevelopmentChatbot
 
 def train_chatbot_model(chatbot_id):
+	print(db)
+	print(chatbot_id)
+	
 	for document in db.Intents.find({"ChatbotAgentId": chatbot_id}):
 		print(document['Patterns'])
 
@@ -79,7 +82,7 @@ def train_chatbot_model(chatbot_id):
 
 	model = tflearn.DNN(net, tensorboard_dir='tflearn_logs')
 
-	model.fit(train_x, train_y, n_epoch=1000, batch_size=9, show_metric=True)
+	model.fit(train_x, train_y, n_epoch=200, batch_size=9, show_metric=True)
 	model.save("./models/chatbot_"+chatbot_id+"/chatbot_"+chatbot_id+".model")
 
 	import pickle
